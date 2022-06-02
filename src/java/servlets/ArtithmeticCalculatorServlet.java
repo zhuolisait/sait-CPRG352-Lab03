@@ -30,7 +30,7 @@ public class ArtithmeticCalculatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String first = request.getParameter("fisrt");
+            String first = request.getParameter("first");
             String second = request.getParameter("second");
             String calc_type = request.getParameter("calc_type");
             String message = "";
@@ -39,7 +39,7 @@ public class ArtithmeticCalculatorServlet extends HttpServlet {
             request.setAttribute("second", second);
             
             //validation
-            if(second == null || first == null || first.equals("") || second.equals("")){
+            if(second == null || first == null || first.equals("") || second.equals("") || !first.matches("[0-9]+") || !second.matches("[0-9]+")){
                 message = "invalid";
                 request.setAttribute("message", message);
                 getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
